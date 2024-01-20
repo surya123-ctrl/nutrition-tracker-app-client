@@ -1,18 +1,24 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 const Login = () => {
   const navigate = useNavigate();
+
+  const loggedInDetails = useContext(AuthContext);
+
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
   });
+
   const [message, setMessage] = useState({
     type: "",
     text: "",
   });
+
   const handleInput = (event) => {
     setUserDetails((prevState) => {
       return { ...prevState, [event.target.name]: event.target.value };
@@ -29,7 +35,6 @@ const Login = () => {
           console.log(data.status);
           setTimeout(() => {
             toast.success(`Welcome ${data.data.name}!`);
-            // window.location.href = "/login";
           }, 2500);
           setMessage({
             type: "success",
@@ -40,6 +45,10 @@ const Login = () => {
             password: "",
           });
           localStorage.setItem("nutrition-tracker-user", JSON.stringify(data));
+          loggedInDetails.setIsLoggedIn({
+            isLoggedIn: data.data,
+            // details: data.data,
+          });
           navigate("/track");
         })
         .catch((error) => {
