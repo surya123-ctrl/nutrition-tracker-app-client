@@ -26,49 +26,96 @@ const Login = () => {
   };
 
   const handleSubmit = async (event) => {
+    // event.preventDefault();
+    // try {
+    //   await axios
+    //     .post("http://localhost:8000/login", userDetails)
+    //     .then((data) => {
+    //       console.log(data.data);
+    //       console.log(data.status);
+    //       setTimeout(() => {
+    //         toast.success(`Welcome ${data.data.name}!`);
+    //       }, 2500);
+    //       setMessage({
+    //         type: "success",
+    //         text: `Welcome ${data.data.name}!`,
+    //       });
+    //       setUserDetails({
+    //         email: "",
+    //         password: "",
+    //       });
+    //       localStorage.setItem("nutrition-tracker-user", JSON.stringify(data));
+    //       loggedInDetails.setIsLoggedIn(data.data);
+    //       console.log(loggedInDetails);
+    //       console.log(loggedInDetails.isLoggedIn);
+
+    //       navigate("/track");
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response.data.message);
+    //       setMessage({
+    //         type: "error",
+    //         text: `${error.response.data.message}!`,
+    //       });
+    //       setTimeout(() => {
+    //         toast.error(`${error.response.data.message}!`);
+    //         // window.location.href = "/login";
+    //       }, 2500);
+    //     });
+    // } catch (error) {
+    //   console.log(error);
+    // }
     event.preventDefault();
+
     try {
-      await axios
-        .post("http://localhost:8000/login", userDetails)
-        .then((data) => {
-          console.log(data.data);
-          console.log(data.status);
-          setTimeout(() => {
-            toast.success(`Welcome ${data.data.name}!`);
-          }, 2500);
-          setMessage({
-            type: "success",
-            text: `Welcome ${data.data.name}!`,
-          });
-          setUserDetails({
-            email: "",
-            password: "",
-          });
-          localStorage.setItem("nutrition-tracker-user", JSON.stringify(data));
-          loggedInDetails.setIsLoggedIn({
-            isLoggedIn: data.data,
-            // details: data.data,
-          });
-          navigate("/track");
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-          setMessage({
-            type: "error",
-            text: `${error.response.data.message}!`,
-          });
-          setTimeout(() => {
-            toast.error(`${error.response.data.message}!`);
-            // window.location.href = "/login";
-          }, 2500);
-        });
+      console.log(userDetails);
+      const response = await axios.post(
+        "http://localhost:8000/login",
+        userDetails
+      );
+
+      console.log("Response ", response.data.message);
+      console.log(response.status);
+
+      setTimeout(() => {
+        toast.success(`Welcome ${response.data.name}!`);
+      }, 2500);
+
+      setMessage({
+        type: "success",
+        text: `Welcome ${response.data.name}!`,
+      });
+
+      setUserDetails({
+        email: "",
+        password: "",
+      });
+
+      localStorage.setItem(
+        "nutrition-tracker-user",
+        JSON.stringify(response.data)
+      );
+
+      loggedInDetails.setIsLoggedIn(response.data);
+
+      navigate("/track");
     } catch (error) {
       console.log(error);
+      console.log(error.response.data.message);
+
+      setMessage({
+        type: "error",
+        text: `${error.response.data.message}!`,
+      });
+
+      setTimeout(() => {
+        toast.error(`${error.response.data.message}!`);
+      }, 2500);
     }
   };
 
   return (
-    <section className="form-container">
+    <section className="container">
       <form className="form" onSubmit={handleSubmit}>
         <h1>Login</h1>
         <input

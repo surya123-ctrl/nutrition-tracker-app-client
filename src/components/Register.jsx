@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -57,7 +57,7 @@ const Register = () => {
     }
   };
   return (
-    <section className="form-container">
+    <section className="container">
       <form action="" className="form" onSubmit={handleSubmit}>
         <h1>Register</h1>
         <input

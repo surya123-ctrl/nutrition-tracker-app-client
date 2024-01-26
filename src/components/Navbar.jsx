@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const loggedInDetails = useContext(AuthContext);
 
@@ -13,7 +13,13 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <div>
+    <div className="navbar-container">
+      <Link to="/track">
+        <button>Track</button>
+      </Link>
+      <Link to="/trackFoodByDate">
+        <button>Track Food By Date</button>
+      </Link>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
