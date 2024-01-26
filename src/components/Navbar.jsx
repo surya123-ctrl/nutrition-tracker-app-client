@@ -15,12 +15,20 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <Link to="/track">
-        <button>Track</button>
+        <button className="nav-items">Track</button>
       </Link>
       <Link to="/trackFoodByDate">
-        <button>Track Food By Date</button>
+        <button className="nav-items">Track Food By Date</button>
       </Link>
-      <button onClick={handleLogout}>Logout</button>
+      <Link to="/login">
+        <button
+          className="nav-items"
+          onClick={handleLogout}
+          style={{ backgroundColor: "red", color: "white" }}
+        >
+          Logout
+        </button>
+      </Link>
     </div>
   );
 };
