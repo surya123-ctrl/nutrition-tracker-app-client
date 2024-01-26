@@ -40,9 +40,9 @@ const TrackFoodByDate = () => {
       try {
         console.log(loggedInDetails);
         const response = await axios.get(
-          `http://localhost:8000/track/${loggedInDetails.isLoggedIn.userId}/${
-            date.getMonth() + 1
-          }-${date.getDate()}-${date.getFullYear()}`,
+          `https://nutricalc-m5s7.onrender.com/track/${
+            loggedInDetails.isLoggedIn.userId
+          }/${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`,
           {
             headers: {
               Authorization: `Bearer ${loggedInDetails.isLoggedIn.token}`,

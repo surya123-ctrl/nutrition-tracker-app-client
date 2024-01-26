@@ -18,7 +18,7 @@ const Track = () => {
     try {
       if (event.target.value.length > 0) {
         const response = await axios.get(
-          `http://localhost:8000/foods/${event.target.value}`,
+          `https://nutricalc-m5s7.onrender.com/foods/${event.target.value}`,
           {
             headers: {
               Authorization: `Bearer ${loggedInDetails.isLoggedIn.token}`,

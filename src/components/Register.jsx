@@ -25,7 +25,8 @@ const Register = () => {
     console.log(userDetails);
     try {
       await axios
-        .post("http://localhost:8000/register", userDetails)
+        // .post("http://localhost:8000/register", userDetails)
+        .post("https://nutricalc-m5s7.onrender.com/register", userDetails)
         .then((data) => {
           console.log(data.data);
           setMessage({

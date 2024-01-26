@@ -70,7 +70,7 @@ const Login = () => {
     try {
       console.log(userDetails);
       const response = await axios.post(
-        "http://localhost:8000/login",
+        "https://nutricalc-m5s7.onrender.com/login",
         userDetails
       );
 

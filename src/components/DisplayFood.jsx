@@ -49,7 +49,7 @@ const DisplayFood = ({ clickedFoodItem }) => {
     console.log(loggedInDetails);
     try {
       const response = await axios.post(
-        "http://localhost:8000/track",
+        "https://nutricalc-m5s7.onrender.com/track",
         trackData,
         {
           headers: {
